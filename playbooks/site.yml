@@ -1,0 +1,140 @@
+# site.yml is the overall playbook, but all it does is include the other playbooks that are part of the site. For more
+# information about the structure see:
+# http://docs.ansible.com/ansible/latest/playbooks_best_practices.html
+# http://docs.ansible.com/ansible/latest/intro_inventory.html
+# We follow the guidance to include naming conventions there.
+
+---
+- name: Common Setup
+  hosts: all
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - common
+    - chrony
+  tags:
+    - common
+
+- name: Configure kube master
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - kubernetes/common
+    - kubernetes/master
+  tags:
+    - kube-master
+
+- name: Configure kube nodes
+  hosts: nodes
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - kubernetes/common
+    - kubernetes/node
+  tags:
+    - add-node
+    - kube-node
+
+- name: Setup Ceph
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - ceph
+  tags:
+    - ceph
+
+- name: Deploy Elasticsearch
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - elasticsearch
+  tags:
+    - elasticsearch
+
+- name: Deploy Logstash
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - logstash
+  tags:
+    - logstash
+
+- name: Deploy metricbeats
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - metricbeat
+  tags:
+    - metricbeat
+
+- name: Deploy Kibana
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - kibana
+  tags:
+    - kibana
+
+- name: Deploy Kafka
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - kafka
+  tags:
+    - kafka
+
+- name: Deploy Bro
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - bro
+  tags:
+    - bro
+
+- name: Deploy Moloch
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - moloch
+  tags:
+    - moloch
+
+- name: Deploy Suricata
+  hosts: master-servers
+  gather_facts: no
+  pre_tasks:
+    - setup:
+  roles:
+    - suricata
+  tags:
+    - suricata
+
+- name: Harbor
+  hosts: master-servers
+  gather_facts: no
+  roles:
+    - harbor
+  tags:
+    - harbor
+
+...
