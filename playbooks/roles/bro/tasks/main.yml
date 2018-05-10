@@ -2,6 +2,10 @@
 ################# Setup Kibana #######################
 ######################################################
 ---
+- name: "Offline build check"
+  set_fact:
+    bro_image: "{{ bro_offline_image }}"
+  when: offline_build
 
 - name: "Create config directory"
   file:

@@ -1,7 +1,14 @@
 ---
 
 metricbeat_dir: "{{ install_dir }}/metricbeat"
+kube_state_metrics_image: tfplenum/kube-state-metrics
+kube_state_metrics_offline_image: "{{ docker_registry }}/kube-state-metrics"
+kube_state_metrics_image64: tfplenum/kube-state-metrics-amd64
+kube_state_metrics_offline_image64: "{{ docker_registry }}/kube-state-metrics-amd64"
 kube_state_metrics_version: v1.3.0
+
+metricbeat_image: docker.elastic.co/beats/metricbeat
+metricbeat_offline_image: "{{ docker_registry}}/metricbeat"
 metricbeat_version: "{{ elastic_ver }}"
 
 ...

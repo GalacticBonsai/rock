@@ -57,4 +57,8 @@ package_list:
 #rocknsm_gpgurl: https://packagecloud.io/rocknsm/2/gpgkey
 rocknsm_baseurl: 'https://copr-be.cloud.fedoraproject.org/results/@rocknsm/rocknsm-2.1/epel-7-$basearch/'
 rocknsm_gpgurl: 'https://copr-be.cloud.fedoraproject.org/results/@rocknsm/rocknsm-2.1/pubkey.gpg'
+
+# Harbor instance
+docker_registry: 'http://ansiblecontroller:81/library'
+offline_build: false #true
 ...

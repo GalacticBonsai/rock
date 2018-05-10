@@ -2,6 +2,12 @@
 ################# Setup Metricbeat ###################
 ######################################################
 ---
+- name: "Offline build check"
+  set_fact:
+    kube_state_metrics_image: "{{ kube_state_metrics_offline_image }}"
+    kube_state_metrics_image64: "{{ kube_state_metrics_offline_image64 }}"
+    metricbeat_image: "{{ metricbeat_offline_image }}"
+  when: offline_build
 
 - name: 'Install python-docker-py'
   yum:
@@ -12,9 +18,9 @@
   docker_image:
     name: "{{ item }}"
   with_items:
-    - tfplenum/kube-state-metrics-amd64:{{ kube_state_metrics_version }}
-    - tfplenum/kube-state-metrics:{{ kube_state_metrics_version }}
-    - docker.elastic.co/beats/metricbeat:{{ metricbeat_version }}
+    - "{{ kube_state_metrics_image }}:{{ kube_state_metrics_version }}"
+    - "{{ kube_state_metrics_image64 }}:{{ kube_state_metrics_version }}"
+    - "{{ metricbeat_image }}:{{ metricbeat_version }}"
 
 - name: "Create config directory"
   file:

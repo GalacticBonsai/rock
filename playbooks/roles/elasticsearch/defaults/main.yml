@@ -16,3 +16,4 @@ elastic_dir: "{{ install_dir  }}/elasticsearch"
 elastic_pv_data_path: "/usr/share/elasticsearch/data"
 elastic_config_path: "/usr/share/elasticsearch/config"
 elasticsearch_image: 'tfplenum/elasticsearch'
+elasticsearch_offline_image: "{{ docker_registry }}/elasticsearch"

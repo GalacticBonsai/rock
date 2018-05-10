@@ -3,6 +3,7 @@
 
 #### Moloch configuration variables ####
 moloch_image: 'tfplenum/moloch'
+moloch_offline_image: "{{ docker_registry }}/moloch"
 moloch_tag: 'latest'
 moloch_port: "8005"
 moloch_threads: "2"

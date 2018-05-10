@@ -6,6 +6,7 @@ logstash_dir: "{{ install_dir }}/logstash"
 logstash_pv_size: "1"
 logstash_path: "/usr/share/logstash"
 logstash_image: "docker.elastic.co/logstash/logstash"
+logstash_offline_image: "{{ docker_registry }}/logstash"
 logstash_ver: "{{ elastic_ver }}"
 
 kafka_url: "kafka"

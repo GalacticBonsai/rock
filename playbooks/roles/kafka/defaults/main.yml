@@ -4,6 +4,7 @@
 #### Main Role Configuration ####
 
 kafka_image: "tfplenum/kafka"
+kafka_offline_image: "{{ docker_registry }}/kafka"
 kafka_port: 9092
 kafka_ver: alpine
 kafka_dir: "{{ install_dir }}/kafka"
@@ -18,6 +19,7 @@ zookeeper_data_path: "/data"
 zookeeper_datalog_path: "/datalog"
 zookeeper_pv_size: 1
 zookeeper_image: tfplenum/zookeeper
+zookeeper_offline_image: "{{ docker_registry }}/zookeeper"
 zookeeper_ver: alpine
 zookeeper_home: /opt/zookeeper
 

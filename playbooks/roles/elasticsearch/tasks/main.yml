@@ -6,6 +6,11 @@
 # This is here because Kubernetes repeatedly failed to download the image.
 # See: https://github.com/kubernetes/kubernetes/issues/59376
 # Pulling it through Docker resolves the issue
+- name: "Offline build check"
+  set_fact:
+    elastic_image: "{{ elasticsearch_offline_image }}"
+  when: offline_build
+
 - name: Perform Elasticsearch image download workaround
   docker_image:
     name: "{{ elasticsearch_image }}:{{ elastic_ver }}"

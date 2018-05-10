@@ -6,6 +6,12 @@
 # This is here because Kubernetes repeatedly failed to download the image.
 # See: https://github.com/kubernetes/kubernetes/issues/59376
 # Pulling it through Docker resolves the issue
+- name: "Offline build check"
+  set_fact:
+    kafka_image: "{{ kafka_offline_image }}"
+    zookeeper_image: "{{ zookeeper_offline_image }}"
+  when: offline_build
+
 - name: Perform Kafka/Zookeeper download workaround
   docker_image:
     name: "{{ item }}"

@@ -1,5 +1,16 @@
 ---
 
+# This is here because Kubernetes repeatedly failed to download the image.
+# See: https://github.com/kubernetes/kubernetes/issues/59376
+# Pulling it through Docker resolves the issue
+- name: "Offline build check"
+  set_fact:
+    moloch_image: "{{ moloch_offline_image }}"
+  when: offline_build
+
+- name: Perform image download workaround
+  docker_image:
+    name: "{{ moloch_image}}:{{ moloch_tag }}"
 - include_tasks: 05_format_drives.yml
   when: inventory_hostname in groups['moloch'] and not use_ceph_for_pcap and pcap_disk is not none
 
