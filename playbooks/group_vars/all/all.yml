@@ -44,7 +44,7 @@ package_list:
   - cockpit
   - cockpit-dashboard
   - cockpit-machines
-  - cockpit-networkmanager
+  #- cockpit-networkmanager
   - cockpit-packagekit
   #- cockpit-storaged - this is currently broken TODO: we need to look into this. See: https://github.com/tfplenum/rock/issues/323
   - cockpit-system
@@ -59,6 +59,6 @@ rocknsm_baseurl: 'https://copr-be.cloud.fedoraproject.org/results/@rocknsm/rockn
 rocknsm_gpgurl: 'https://copr-be.cloud.fedoraproject.org/results/@rocknsm/rocknsm-2.1/pubkey.gpg'
 
 # Harbor instance
-docker_registry: 'http://ansiblecontroller:81/library'
-offline_build: false #true
+docker_registry: 'ansiblecontroller:81/library'
+offline_build: true #true
 ...

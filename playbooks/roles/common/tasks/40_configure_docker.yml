@@ -1,0 +1,6 @@
+---
+- name: 'Insecured Registry'
+  replace:
+    path: /etc/docker/daemon.json
+    regexp: '\{\}'
+    replace: '{\n\t"insecure-registries" : ["https://ansiblecontroller:81","ansiblecontroller:81"]\n}'
